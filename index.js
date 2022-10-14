@@ -1,5 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser'); 
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const keys = require("./config/keys")
 const PORT = process.env.PORT || 5000;
 const cors = require('cors');
 const app = express();
@@ -10,12 +12,13 @@ app.use(
     )
 )
 
-//ßtest
-
 app.use(bodyParser.json())
 
 app.use(cors({origin:true,credential:true}))
 
+mongoose.connect(keys.mongoURI)
+    .then(console.log("DB Connected"))
+    .catch(err => console.log(err))
 
 if (process.env.NODE_ENV === 'production') {
     // Express will serve up production assets
