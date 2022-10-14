@@ -10,6 +10,8 @@ app.use(
     )
 )
 
+//ßtest
+
 app.use(bodyParser.json())
 
 app.use(cors({origin:true,credential:true}))
